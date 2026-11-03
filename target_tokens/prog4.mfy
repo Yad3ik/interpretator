@@ -1,0 +1,25 @@
+/* структуры
+   и указатели */
+type Node {
+    value: int;
+    next: p Node;
+}
+
+let third: Node = Node(3, null);
+let first: Node = Node(1, &third);
+let cur: p Node = &first;
+let total: int = 0;
+while cur != null {
+    total = total + cur->value;
+    cur = cur->next;
+}
+
+let p: int = 5;
+let q: pc int = &p;
+let r: cpc int = q;
+let pick: int = total > 3 -> $r | p;
+let line: str = "";
+while (line := input()) != "end" {
+    print line;
+}
+print first.next->value;

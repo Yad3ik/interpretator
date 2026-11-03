@@ -1,0 +1,8 @@
+// арифметика, сравнения, логика
+let a: int = 7;
+let b: real = 2.5;
+let ok: bool = a >= 3 and not (b < 1.0) or false;
+let s: str = "tab:\t quote:\" slash:\\";
+print a * 2 + a / 3 - a % 4;
+print -a + +a;
+print a != 0 and b <= 2.5e1;

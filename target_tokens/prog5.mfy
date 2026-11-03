@@ -1,0 +1,12 @@
+// граничные случаи: файл лексически корректен, но парсер его не примет —
+// команда tokens только делит текст на лексемы
+format integer iffy define letter print_all
+p c pc cp pcp cc P C pcx
+++x --y a+++b a - -b x--y
+a==b a=b a!=b a<=b a<b a>=b x:=1 x: =1
+1.5 1. 1..2 1e5 1e 2.5e-3 3E+8 007 0
+cond -> a | b node->next x /* к */-> y (a)->f
+if (x) while	true for ;
+"Привет, мир" + "\n\t\"\\" // комментарий: кириллица
+/* многострочный
+   комментарий */ end
