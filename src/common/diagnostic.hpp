@@ -12,6 +12,8 @@ enum class Stage {
     Runtime
 };
 
+const char* stageName(Stage stage); // human-read repr: Lex -> "lexical"
+
 struct Info {
     Stage stage;
     Position pos;
