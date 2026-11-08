@@ -19,3 +19,5 @@ std::string_view KindLexeme(TokenKind kind) {
 }
 
 // федя тут дореализуй
+// IsKeyword— статическая таблица из tokens.def,
+// только строки, где написание начинается с буквы (README §2.5). Остальные — операторы.
