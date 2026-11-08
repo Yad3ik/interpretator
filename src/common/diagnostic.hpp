@@ -14,7 +14,7 @@ enum class Stage {
 
 const char* stageName(Stage stage); // human-read repr: Lex -> "lexical"
 
-struct Info {
+struct ErrInfo {
     Stage stage;
     Position pos;
     std::string description;
@@ -26,16 +26,16 @@ class Diagnostics {
     explicit Diagnostics(const Source& program) : fname_(program.name) {}
 
     bool hasErrors() const;
-    void report(Stage, Position, std::string msg);
+    void report(Stage, Position, std::string desc);
     void print(std::ostream&) const;
 
   private:
     std::string fname_;
-    std::vector<Info> items_;
+    std::vector<ErrInfo> items_;
 };
 
 struct MFYError : std::exception {
-    Info item;
-    explicit MFYError(Info i) : item(std::move(i)) {}
+    ErrInfo item;
+    explicit MFYError(ErrInfo i) : item(std::move(i)) {}
     const char* what() const noexcept override { return item.description.c_str(); }
 };
