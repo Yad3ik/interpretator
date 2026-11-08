@@ -1,9 +1,11 @@
 #pragma once
 
-#include "source.hpp"
+#include "common/source.hpp"
 
 #include <vector>
 #include <ostream>
+#include <exception>
+#include <utility>
 
 enum class Stage {
     Lex,
@@ -12,7 +14,7 @@ enum class Stage {
     Runtime
 };
 
-const char* stageName(Stage stage); // human-read repr: Lex -> "lexical"
+const char* StageName(Stage stage); // human-read repr: Lex -> "lexical"
 
 struct ErrInfo {
     Stage stage;
