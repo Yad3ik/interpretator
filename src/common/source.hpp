@@ -3,7 +3,7 @@
 #include <string>
 
 struct Source {
-    std::string name; // path
+    std::string name; // path or "<repl>"
     std::string text;
 };
 
