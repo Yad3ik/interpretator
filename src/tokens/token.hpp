@@ -2,6 +2,7 @@
 
 #include "common/source.hpp"
 #include <string_view>
+#include <optional>
 
 enum class TokenKind {
     #define TOKEN(name, repr, lexeme) name,
@@ -10,15 +11,15 @@ enum class TokenKind {
 };
 
 struct Token {
-    Position pos;
+    Range position;
     std::string lexeme;
     TokenKind kind;
-    bool space_before;
+    bool space_before = false;
 };
 
 std::string_view KindRepr(TokenKind);
 std::string_view KindLexeme(TokenKind);
-bool IsKeyword(std::string_view); // является ли слово ключевым
+std::optional<TokenKind> IsKeyword(std::string_view); // является ли слово ключевым, иначе nullopt
 
 #define TOKEN(name, repr, lexeme) + 1
 constexpr size_t kTokenKindCount = 0
