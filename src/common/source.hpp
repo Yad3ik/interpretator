@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <cstddef>
 
 struct Source {
     std::string name; // path or "<repl>"
