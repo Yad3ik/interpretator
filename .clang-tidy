@@ -1,0 +1,32 @@
+# Именование в проекте. clangd читает этот файл и подсвечивает нарушения в редакторе.
+Checks: '-*,readability-identifier-naming'
+CheckOptions:
+  # типы и значения enum: PascalCase
+  readability-identifier-naming.ClassCase: CamelCase
+  readability-identifier-naming.StructCase: CamelCase
+  readability-identifier-naming.EnumCase: CamelCase
+  readability-identifier-naming.EnumConstantCase: CamelCase
+  readability-identifier-naming.TypeAliasCase: CamelCase
+
+  # свободные функции: PascalCase; методы, в том числе статические: camelCase
+  readability-identifier-naming.FunctionCase: CamelCase
+  readability-identifier-naming.MethodCase: camelBack
+  readability-identifier-naming.IgnoreMainLikeFunctions: true
+
+  # переменные, параметры, поля: snake_case; приватные поля с _ в конце
+  readability-identifier-naming.VariableCase: lower_case
+  readability-identifier-naming.ParameterCase: lower_case
+  readability-identifier-naming.MemberCase: lower_case
+  readability-identifier-naming.PrivateMemberCase: lower_case
+  readability-identifier-naming.PrivateMemberSuffix: _
+
+  # константы времени компиляции, глобальные и static: kPascalCase
+  readability-identifier-naming.ConstexprVariableCase: CamelCase
+  readability-identifier-naming.ConstexprVariablePrefix: k
+  readability-identifier-naming.GlobalConstantCase: CamelCase
+  readability-identifier-naming.GlobalConstantPrefix: k
+  readability-identifier-naming.StaticConstantCase: CamelCase
+  readability-identifier-naming.StaticConstantPrefix: k
+
+  readability-identifier-naming.MacroDefinitionCase: UPPER_CASE
+  readability-identifier-naming.NamespaceCase: lower_case
