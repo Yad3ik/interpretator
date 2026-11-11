@@ -13,7 +13,7 @@ DFA BuildWordDFA() { // [a-zA-Z_][a-zA-Z_0-9]*
     dfa.setFinish(finish, TokenKind::Ident);
 
     dfa.addRule(0, kAlpha, finish);
-    dfa.addRule(0, "-", finish);
+    dfa.addRule(0, "_", finish);
 
     dfa.addRule(finish, kAlpha, finish);
     dfa.addRule(finish, kNumbers, finish);
