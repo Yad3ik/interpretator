@@ -25,7 +25,7 @@ size_t DFA::transit(size_t from, char c) const {
     return states_[from].next[static_cast<unsigned char>(c)];
 }
 
-std::optional<TokenKind> DFA::accept(size_t state) const {
+std::optional<TokenKind> DFA::finish(size_t state) const {
     return states_[state].accept;
 }
 
@@ -41,7 +41,7 @@ std::optional<Match> LongestMatch(const DFA& dfa, const Cursor& start) {
         if (state == kNotAState) break;
         current.next();
         
-        auto kind = dfa.accept(state);
+        auto kind = dfa.finish(state);
         if (kind.has_value()) {
             match = Match{kind.value(), current};
         }

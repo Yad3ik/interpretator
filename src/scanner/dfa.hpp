@@ -22,7 +22,7 @@ class DFA {
     void addRule(size_t from, std::string_view chars, size_t to); // all symbols from chars: from -> to
     void setFinish(size_t state, TokenKind kind); // сделать состояние заверщающим
     size_t transit(size_t from, char c) const; // where we go or kNotAState
-    std::optional<TokenKind> accept(size_t state) const; // what kind accept state. if state is not accepting -> nothing
+    std::optional<TokenKind> finish(size_t state) const; // what kind accept state. if state is not accepting -> nothing
 
   private:
     struct State {
