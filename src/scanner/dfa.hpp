@@ -20,7 +20,7 @@ class DFA {
 
     size_t addState(); // return created state number
     void addRule(size_t from, std::string_view chars, size_t to); // all symbols from chars: from -> to
-    void setAccept(size_t state, TokenKind kind);
+    void setFinish(size_t state, TokenKind kind); // сделать состояние заверщающим
     size_t transit(size_t from, char c) const; // where we go or kNotAState
     std::optional<TokenKind> accept(size_t state) const; // what kind accept state. if state is not accepting -> nothing
 
