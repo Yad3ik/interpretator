@@ -16,7 +16,7 @@ void DFA::addRule(size_t from, std::string_view chars, size_t to) {
     }
 }
 
-void DFA::setAccept(size_t state, TokenKind kind) {
+void DFA::setFinish(size_t state, TokenKind kind) {
     assert(state != 0 && state < states_.size());
     states_[state].accept = kind;
 }
