@@ -3,7 +3,7 @@
 
 namespace {
     constexpr std::string_view kAlpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    constexpr std::string_view kNumbers = "0123456789";
+    constexpr std::string_view kDigits = "0123456789";
 }
 
 DFA BuildWordDFA() { // [a-zA-Z_][a-zA-Z_0-9]*
@@ -16,7 +16,7 @@ DFA BuildWordDFA() { // [a-zA-Z_][a-zA-Z_0-9]*
     dfa.addRule(0, "_", finish);
 
     dfa.addRule(finish, kAlpha, finish);
-    dfa.addRule(finish, kNumbers, finish);
+    dfa.addRule(finish, kDigits, finish);
     dfa.addRule(finish, "_", finish);
 
     return dfa;
