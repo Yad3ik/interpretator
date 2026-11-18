@@ -6,6 +6,10 @@
 #include <ostream>
 #include <exception>
 #include <utility>
+#include <algorithm>
+#include <string>
+#include <string_view>
+#include <format>
 
 enum class Stage {
     Lex,

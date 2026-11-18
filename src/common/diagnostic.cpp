@@ -1,9 +1,4 @@
 #include "common/diagnostic.hpp"
-#include <algorithm>
-#include <string>
-#include <string_view>
-#include <format>
-
 
 // Миша this file for you!
 //   StageName: Lex → "lexical", Syntax → "syntax", Semantic → "semantic", Runtime → "runtime";
