@@ -26,13 +26,13 @@ void Diagnostics::report(Stage stage, Position pos, std::string desc) {
     items_.emplace_back(stage, pos, std::move(desc));
 }
 
-bool cmp(const ErrInfo& a, const ErrInfo& b) {
+bool Cmp(const ErrInfo& a, const ErrInfo& b) {
     return a.pos < b.pos;
 }
 
 void Diagnostics::print(std::ostream& out) const {
     auto errors = items_;
-    std::stable_sort(errors.begin(), errors.end(), cmp);
+    std::stable_sort(errors.begin(), errors.end(), Cmp);
 
     for (const auto& i : errors) {
         out << std::format("{}:{}:{}: {} error: {}\n",
