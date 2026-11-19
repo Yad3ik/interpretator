@@ -6,6 +6,10 @@
 #include <ostream>
 #include <exception>
 #include <utility>
+#include <algorithm>
+#include <string>
+#include <string_view>
+#include <format>
 
 enum class Stage {
     Lex,
@@ -14,13 +18,15 @@ enum class Stage {
     Runtime
 };
 
-const char* StageName(Stage stage); // human-read repr: Lex -> "lexical"
+std::string_view StageName(Stage stage); // human-read repr: Lex -> "lexical"
 
 struct ErrInfo {
     Stage stage;
     Position pos;
     std::string description;
 };
+
+bool cmp(const ErrInfo& a, const ErrInfo& b); // добавил компаратор для ErrInfo
 
 class Diagnostics {
   public:
