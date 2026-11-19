@@ -26,7 +26,7 @@ struct ErrInfo {
     std::string description;
 };
 
-bool cmp(const ErrInfo& a, const ErrInfo& b); // добавил компаратор для ErrInfo
+bool Cmp(const ErrInfo& a, const ErrInfo& b); // добавил компаратор для ErrInfo
 
 class Diagnostics {
   public:
