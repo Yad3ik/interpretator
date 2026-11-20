@@ -39,3 +39,6 @@ constexpr size_t kTokenKindCount = 0
     #include "tokens/tokens.def"
 ;
 #undef TOKEN
+
+std::string PrintToken(const Token& token);
+std::string PrintCodeParse(const std::vector<Token>& tokens);
