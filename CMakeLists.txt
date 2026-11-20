@@ -8,7 +8,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_compile_options(-Wall -Wextra -Wpedantic)
 
-add_library(mfy_common src/common/diagnostic.cpp)
+add_library(mfy_common src/common/diagnostic.cpp src/common/source.cpp)
 target_include_directories(mfy_common PUBLIC ${PROJECT_SOURCE_DIR}/src)
 add_library(mfy_tokens src/tokens/token.cpp)
 target_link_libraries(mfy_tokens PUBLIC mfy_common)
