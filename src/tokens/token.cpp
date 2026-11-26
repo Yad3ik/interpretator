@@ -1,6 +1,7 @@
 #include "tokens/token.hpp"
 #include <cctype>
 #include <optional>
+#include <string>
 
 std::string_view KindRepr(TokenKind kind) {
     #define TOKEN(name, repr, lexeme) case TokenKind::name: return repr;
@@ -33,4 +34,22 @@ std::optional<TokenKind> KeywordKind(std::string_view token_text){
     } return std::nullopt;
 }
 
+std::string StringToken(const Token & token){
+    std::string answer = std::to_string(token.range.start.line) + ":" + std::to_string(token.range.start.column) + "-" + std::to_string(token.range.end.line) + ":" + std::to_string(token.range.end.column);
+    answer += '\t';
+    answer += KindRepr(token.kind);
+    if (token.kind != TokenKind::End){
+        answer += '\t';
+        answer += token.lexeme;
+    }
+    return answer;
+}
+
+std::string StringCodeParse(const std::vector<Token>& tokens){
+    std::string answer = "";
+    for (auto& token : tokens){
+        answer += (StringToken(token) + '\n');
+    }
+    return answer;
+}
 

@@ -4,6 +4,7 @@
 #include <string_view>
 #include <optional>
 #include <cctype>
+#include <vector>
 
 enum class TokenKind {
     #define TOKEN(name, repr, lexeme) name,
@@ -39,3 +40,6 @@ constexpr size_t kTokenKindCount = 0
     #include "tokens/tokens.def"
 ;
 #undef TOKEN
+
+std::string StringToken(const Token& token);
+std::string StringCodeParse(const std::vector<Token>& tokens);
