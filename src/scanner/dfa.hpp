@@ -42,5 +42,5 @@ struct Match { // вид распознаной лексемы и где она 
     Cursor end;
 };
 
-std::optional<Match> LongestMatch(const DFA&, const Cursor&);
+std::optional<Match> LongestMatch(const DFA&, const Cursor&); 
 
