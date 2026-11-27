@@ -14,3 +14,6 @@ add_library(mfy_tokens src/tokens/token.cpp)
 target_link_libraries(mfy_tokens PUBLIC mfy_common)
 add_library(mfy_scanner src/scanner/cursor.cpp src/scanner/dfa.cpp src/scanner/automat_gen.cpp)
 target_link_libraries(mfy_scanner PUBLIC mfy_tokens)
+
+add_executable(mfy src/main.cpp)
+target_link_libraries(mfy PRIVATE mfy_scanner)
