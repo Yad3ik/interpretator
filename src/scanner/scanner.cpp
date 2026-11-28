@@ -3,11 +3,25 @@
 #include "tokens/token.hpp"
 
 #include <cassert>
+#include <cctype>
 #include <cstddef>
 
 namespace {
     bool IsSpace(char ch) {
         return ch == ' ' || ch == '\n' || ch == '\t' || ch == '\r';
+    }
+
+    std::string modificators[] = {"c", "p", "cp", "pc", 
+        "pp", "cpc", "ppc", "pcp", 
+        "cpp", "pcpc", "cppc", "cpcp", 
+        "pcpc", "cpcpc"};
+
+    bool IsModword(std::string_view lex) {
+       for(auto& mod : modificators) {
+        if(lex == mod) return true;
+       }
+
+       return false;
     }
 }
 
@@ -18,7 +32,23 @@ void Scanner::error(Position pos, std::string msg) const {
 Match Scanner::scanWord() const {
     auto match = LongestMatch(word_dfa_, cursor_);
 
+    
+
     assert(match.has_value() && "scanWord called not from [a-zA-Z_]");
+
+    std::string_view lexeme = match->end.textSince(cursor_);
+    auto keyword = KeywordKind(lexeme);
+
+    if (keyword.has_value()) {
+        match->kind = *keyword;
+        return *match;
+    }
+
+    if (IsModword(lexeme)) {
+        match->kind = TokenKind::Modword;
+        return *match;
+    }
+
     return *match;
 }
 
@@ -138,4 +168,51 @@ bool Scanner::skipTrivia() {
     }
 
     return skip;
+}
+
+Token Scanner::next() {
+    bool spaces = skipTrivia();
+
+    if (cursor_.atEnd()) {
+        Match eof {TokenKind::End, cursor_};
+        return makeToken(eof, false);
+    }
+
+    char symbol = cursor_.peek();
+    Match match{TokenKind::End, cursor_};
+
+    if (std::isdigit(symbol)) {
+        match = scanNumber();
+    } else if (symbol == '\"') {
+        match = scanString();
+    }  else if (std::isalpha(symbol) || symbol == '_') {
+        match = scanWord();
+    } else {
+        match = scanOperator(spaces);
+    }
+
+    auto token = makeToken(match, spaces);
+    cursor_ = match.end;
+    
+    return token;
+}
+
+std::vector<Token> Tokenize(const Source& src) {
+    Scanner scanner(src);
+
+    std::vector<Token> tokens;
+
+    Token token = scanner.next();
+    while (token.kind != TokenKind::End) {
+        if (token.kind == TokenKind::Modword) {
+            if (tokens.empty() || tokens.back().kind != TokenKind::Colon)
+                token.kind = TokenKind::Ident;
+        }
+
+        tokens.push_back(token);
+        token = scanner.next();
+    }
+
+    tokens.push_back(token);
+    return tokens;
 }
