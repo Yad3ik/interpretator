@@ -14,7 +14,7 @@ class Scanner {
 
   private:
 
-    bool skipTrivia();
+    bool skipTrivia(); // пробелы и комментарии
 
     Match scanWord() const;
     Match scanNumber() const;
