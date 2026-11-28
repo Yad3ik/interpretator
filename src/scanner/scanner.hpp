@@ -21,7 +21,7 @@ class Scanner {
     Match scanString() const;
     Match scanOperator(bool space_before) const;
 
-    Token makeToken(const Match& match, bool space_before) const;
+    Token makeToken(const Match& match, bool space_befor, int offset) const;
 
     [[noreturn]] void error(Position pos, std::string msg) const;
 

@@ -110,8 +110,8 @@ Match Scanner::scanString() const {
     error(cursor_.position(), "string literal without end symbol \'\"\'");
 }
 
-Token Scanner::makeToken(const Match& match, bool space_before) const {
-    Position end{match.end.position().line, match.end.position().column - 1};
+Token Scanner::makeToken(const Match& match, bool space_before, int offset = -1) const {
+    Position end{match.end.position().line, match.end.position().column + offset};
 
     return {{cursor_.position(), end},
             std::string(match.end.textSince(cursor_)),
@@ -175,7 +175,7 @@ Token Scanner::next() {
 
     if (cursor_.atEnd()) {
         Match eof {TokenKind::End, cursor_};
-        return makeToken(eof, false);
+        return makeToken(eof, false, 0);
     }
 
     char symbol = cursor_.peek();
